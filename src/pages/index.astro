@@ -20,8 +20,10 @@ import SQLServerIcon from "../components/icons/SQLServerIcon.astro";
 import Layout from "../layout/Layout.astro";
 ---
 
-<Layout title="Facu's Portfolio - Software Developer" desc="Contrata a Facundo para desarrolar tu sitio web.">
-	<main>
+<Layout 
+	title="Facu's Portfolio - Software Developer" 
+	desc="Contrata a Facundo para desarrolar tu sitio web.">
+	<main class="px-4">
 		<SectionContainer class="pt-10 pb-24">
 			<div class="flex flex-col gap-6">
 				<img 
@@ -49,12 +51,12 @@ import Layout from "../layout/Layout.astro";
 				</SocialBadge>
 			</nav>
 		</SectionContainer>
-		<SectionContainer>
+		<SectionContainer id="exp">
 			<div class="flex flex-row items-center mb-6"><BriefcaseIcon class="size-6"/>
 				<h2 class="text-2xl font-bold ml-2">Experiencia Laboral</h2></div>
 			<ExperienceTimeLine/>
 		</SectionContainer>
-		<SectionContainer>
+		<SectionContainer id="techs">
 			<div class="flex flex-row items-center mb-6">
 				<GearIcon class="size-6"/>
 				<h2 class="text-2xl font-bold ml-2">Tecnologías</h2>
