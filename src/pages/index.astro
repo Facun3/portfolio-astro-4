@@ -1,16 +1,98 @@
 ---
-
+import ExperienceTimeLine from "../components/ExperienceTimeLine.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import SocialBadge from "../components/SocialBadge.astro";
+import TechContainer from "../components/TechContainer.astro";
+import AngularIcon from "../components/icons/AngularIcon.astro";
+import BriefcaseIcon from "../components/icons/BriefcaseIcon.astro";
+import DockerIcon from "../components/icons/DockerIcon.astro";
+import DotNetIcon from "../components/icons/DotNetIcon.astro";
+import GearIcon from "../components/icons/GearIcon.astro";
+import GitIcon from "../components/icons/GitIcon.astro";
+import Github from "../components/icons/GithubIcon.astro";
+import JavaIcon from "../components/icons/JavaIcon.astro";
+import Linkedin from "../components/icons/LinkedinIcon.astro";
+import MailIcon from "../components/icons/MailIcon.astro";
+import MongoDbIcon from "../components/icons/MongoDbIcon.astro";
+import NextJsIcon from "../components/icons/NextJsIcon.astro";
+import PostmanIcon from "../components/icons/PostmanIcon.astro";
+import SQLServerIcon from "../components/icons/SQLServerIcon.astro";
+import Layout from "../layout/Layout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Facu's Portfolio</title>
-	</head>
-	<body>
-		<h1>Pilot</h1>
-	</body>
-</html>
+<Layout title="Facu's Portfolio - Software Developer" desc="Contrata a Facundo para desarrolar tu sitio web.">
+	<main>
+		<SectionContainer class="pt-10 pb-24">
+			<div class="flex flex-col gap-6">
+				<img 
+				src="/public/profile.png"
+				class="size-[120px] rounded-full self-center mt-10"
+				alt="facundo profile pic"
+			/>				
+			<h1 class="text-white text-4xl font-bold justify-center">Hola, Soy Facundo</h1>			
+			</div>			
+			<h2 class="text-xl mt-4">				
+				<span class="text-green-400">Desarrolador de software.</span>				
+				<span class="">Con 3 años en el mundo de desarrollo de aplicaciones web únicas.</span><br/>
+				<span class="">Córdoba, Argentina 🇦🇷.</span>
+			</h2>
+			<nav class="flex gap-x-4 mt-6">
+				<SocialBadge href="https://www.linkedin.com/in/facundo-choque/">
+					<Linkedin class="size-6"/> Linkedin
+				</SocialBadge>
+				<SocialBadge href="https://github.com/Facun3">
+					<Github class="size-6"/> Github
+				</SocialBadge>
+				<SocialBadge href="https://www.linkedin.com/">
+					<MailIcon class="size-6"/>
+					<span class="hidden md:inline">facusilberman@gmail.com</span>
+				</SocialBadge>
+			</nav>
+		</SectionContainer>
+		<SectionContainer>
+			<div class="flex flex-row items-center mb-6"><BriefcaseIcon class="size-6"/>
+				<h2 class="text-2xl font-bold ml-2">Experiencia Laboral</h2></div>
+			<ExperienceTimeLine/>
+		</SectionContainer>
+		<SectionContainer>
+			<div class="flex flex-row items-center mb-6">
+				<GearIcon class="size-6"/>
+				<h2 class="text-2xl font-bold ml-2">Tecnologías</h2>
+			</div>
+			<div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-12">
+				<TechContainer class="items-center justify-center border-1 border-white">
+					<AngularIcon class="size-16"/>
+					<span>Angular</span>
+				</TechContainer>
+				<TechContainer>
+					<DotNetIcon class="size-16"/>
+					<span>.NET Core/Framework</span>
+				</TechContainer>	
+				<TechContainer>
+					<NextJsIcon class="size-16"/>
+					<span>NextJS</span>
+				</TechContainer>
+				<TechContainer>
+					<SQLServerIcon class="size-16"/>
+					<span>SQL Server</span>
+				</TechContainer>
+				<TechContainer>
+					<MongoDbIcon class="size-16"/>
+					<span>MongoDB</span>
+				</TechContainer>
+				<TechContainer>
+					<GitIcon class="size-16"/>
+					<span>Git</span>
+				</TechContainer>
+				<TechContainer>
+					<DockerIcon class="size-16"/>
+					<span>Docker</span>
+				</TechContainer>
+				<TechContainer>
+					<PostmanIcon class="size-16"/>
+					<span>Postman</span>
+				</TechContainer>			
+			</div>
+		</SectionContainer>
+	</main>
+</Layout>

@@ -1,0 +1,38 @@
+---
+import ExperienceItem from "./ExperienceItem.astro"
+
+const EXPERIENCE = [
+    {
+        date: "Febrero 2024 - Actualidad",
+        title: "Prosocial(USA)",
+        desc: "Encargado del mantenimiento y actualización de diversas aplicaciones utilizando tecnologías como Angular, Java, Mongo. Múltiples integraciones con servicios AWS, Auth0, Salesforce, Stripe y Zoom.",        
+    },
+    {
+        date: "Octubre 2023 - Febrero 2024",
+        title: "BeeReal(ARG)",
+        desc: "Desarrollo equipo de una pagina web landing utilizando técnologías NextJS, Tailwind, Strapi. Se enfatizaron aspectos como la accesibilidad, experiencia de usuario y rendimiento.",
+    },
+    {
+        date: "Agosto 2022 - Octubre 2023",
+        title: "OSPRERA(ARG)",
+        desc: "Mantenimiento y actualización de aplicaciones web internas para una aseguradora de salud utilizando tecnologías como Angular, .NET Core, SQL Server. Testing con MS Test.",
+    },
+    {
+        date: "Octubre 2021 - Agosto 2022",
+        title: "Hipódromo de Chile (CHL)",
+        desc: "Desarrollo de diversas aplicaciones web y API REST, junto con el equipo de TI del hipódromo, utilizando Angular junto con Material Design o PrimeNg, y NetCore para el backend con tecnologías como Entity Framework, LINQ, SQL Server y JWT.",
+    }
+]
+
+---
+
+<ol class="relative border-s border-gray-200 dark:border-gray-700">
+    {
+        EXPERIENCE.map(experience => (
+            <li class="mb-10 ms-6">
+                <ExperienceItem {...experience}/>
+            </li>            
+        ))
+    }                  
+</ol>
+

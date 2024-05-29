@@ -1,0 +1,52 @@
+---
+import Header from '../components/Header.astro';
+import '@fontsource-variable/inter'
+
+interface Props{
+    title: string;
+    desc: string;
+}
+const { desc, title } = Astro.props; 
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="description" content={desc}/>
+		<meta name="viewport" content="width=device-width"/>
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>        
+	</head>
+	<body>
+        <div
+            class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-50 dark:bg-gray-950
+            bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
+            dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,#640d14,rgba(255,255,255,0))]"
+            >
+            </div>
+        <Header/>
+        <slot/>
+    </body>
+</html>
+
+<style is:global>
+
+    :root{
+        color-scheme: light dark;
+    }
+
+    html{
+        font-family: 'inter variable',system-ui, sans-serif;
+    }
+
+    body{        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+        color: white;
+    }
+</style>
