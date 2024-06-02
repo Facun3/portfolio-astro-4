@@ -1,32 +1,41 @@
 ---
+import AvailableBadge from "./AvailableBadge.astro";
 import SocialBadge from "./SocialBadge.astro";
 import GithubIcon from "./icons/GithubIcon.astro";
 import LinkedinIcon from "./icons/LinkedinIcon.astro";
-import MailIcon from "./icons/MailIcon.astro";
+
 ---
 
-<div class="flex flex-col gap-6">
-    <img 
+<div class="flex flex-col items-center md:justify-start">
+  <img
     src="/profile.webp"
-    class="size-[120px] rounded-full self-center mt-10"
+    class="size-[120px] rounded-full mb-2"
     alt="facundo profile pic"
-/>				
-<h1 class="text-white text-4xl font-bold justify-center">Hola, Soy Facundo</h1>			
-</div>			
-<h2 class="text-xl mt-4">				
-    <span class="text-green-400">Desarrolador de software.</span>				
-    <span class="">Con 3 años en el mundo de desarrollo de aplicaciones web únicas.</span><br/>
-    <span class="">Córdoba, Argentina 🇦🇷.</span>
+  />
+  <AvailableBadge>
+    Disponible para trabajar
+  </AvailableBadge>
+  <h1 class="mt-4 text-2xl font-bold text-white md:text-4xl">
+    Hola, Soy Facundo 👋🏼
+  </h1>
+</div>
+<h2 class="mt-4 text-lg">
+  <span class="text-green-400">Desarrolador de software</span>
+  <span class="opacity-90"
+    >con experiencia de casi 3 años en la creación de aplicaciones web innovadoras.</span
+  >
+  <span>Ubicado en Córdoba, Argentina 🇦🇷.</span>
 </h2>
-<nav class="flex gap-x-4 mt-6">
-    <SocialBadge href="https://www.linkedin.com/in/facundo-choque/">
-        <LinkedinIcon class="size-6"/> Linkedin
-    </SocialBadge>
-    <SocialBadge href="https://github.com/Facun3">
-        <GithubIcon class="size-6"/> Github
-    </SocialBadge>
-    <SocialBadge href="https://www.linkedin.com/">
+<nav class="flex mt-4 gap-x-2">
+  <SocialBadge href="https://www.linkedin.com/in/facundo-choque/">
+    <LinkedinIcon class="size-5" /> Linkedin
+  </SocialBadge>
+  <SocialBadge href="https://github.com/Facun3">
+    <GithubIcon class="size-5" /> Github
+  </SocialBadge>
+
+  <!-- <SocialBadge href="mailto:dev.facundo.choque@gmail.com?subject=Hello%20Facundo%20">
         <MailIcon class="size-6"/>
-        <span class="hidden md:inline">facusilberman@gmail.com</span>
-    </SocialBadge>
+        <span class="hidden md:inline">dev.facundo.choque@gmail.com</span>
+    </SocialBadge> -->
 </nav>

@@ -1,7 +1,9 @@
 ---
+import AboutMeSection from "../components/AboutMeSection.astro";
 import ExperienceTimeLine from "../components/ExperienceTimeLine.astro";
 import HeroSection from "../components/HeroSection.astro";
 import SectionContainer from "../components/SectionContainer.astro";
+import StarIcon from "../components/StarIcon.astro";
 import TechStackSection from "../components/TechStackSection.astro";
 import BriefcaseIcon from "../components/icons/BriefcaseIcon.astro";
 import GearIcon from "../components/icons/GearIcon.astro";
@@ -12,22 +14,29 @@ import Layout from "../layout/Layout.astro";
 	title="Facu's Portfolio - Software Developer" 
 	desc="Contrata a Facundo para desarrolar tu sitio web.">
 	<main class="px-4">
-		<SectionContainer class="pt-10 pb-24">
+		<SectionContainer class="pt-16 pb-24">
 			<HeroSection/>
 		</SectionContainer>
-		<SectionContainer id="exp" class="pb-24">
+		<SectionContainer id="exp" class="pb-28">
 			<div class="flex flex-row items-center mb-6">
-				<BriefcaseIcon class="size-6"/>
-				<h2 class="text-2xl font-bold ml-2">Experiencia Laboral</h2>
+				<BriefcaseIcon class="mb-1 mr-1 size-7"/>
+				<h2 class="ml-2 text-2xl font-bold">Experiencia Laboral</h2>
 			</div>
 			<ExperienceTimeLine/>
 		</SectionContainer>
-		<SectionContainer id="techs" class="pb-24">
+		<SectionContainer id="techs" class="pb-28">
 			<div class="flex flex-row items-center mb-6">
-				<GearIcon class="size-6"/>
-				<h2 class="text-2xl font-bold ml-2">Tecnologías</h2>
+				<GearIcon class="mr-1 size-7"/>
+				<h2 class="ml-2 text-2xl font-bold">Tecnologías</h2>
 			</div>
 			<TechStackSection/>
+		</SectionContainer>
+		<SectionContainer id="sobre-mi" class="pb-28">
+			<div class="flex flex-row items-center mb-6">
+				<StarIcon class="mb-1 mr-1 size-7"/>
+				<h2 class="ml-2 text-2xl font-bold">Sobre Mí</h2>
+			</div>
+			<AboutMeSection/>
 		</SectionContainer>
 	</main>
 </Layout>

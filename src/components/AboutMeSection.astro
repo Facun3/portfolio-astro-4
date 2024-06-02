@@ -1,0 +1,33 @@
+---
+const getEdad = () => {
+  const dateBirth = new Date('1996-09-24');
+
+  const actualDate = new Date();
+  actualDate.setUTCHours(0, 0, 0, 0);
+  const diffMs = actualDate.getDate() - dateBirth.getDate();
+  const age = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 365));
+
+  return age
+
+}
+---
+
+<div class="flex flex-col md:flex-row gap-x-4 md:gap-x-0 md:justify-between">
+    <div class="flex-col hidden mx-auto mr-8 text-lg md:flex">
+        <p>Mi nombre completo es <span class="text-green-300">Facundo Emiliano Choque Silberman</span>, tengo {getEdad()} y estoy en el mundo del desarrollo desde hace <span class="text-[#facc15]">casi 3 años</span>.</p><br/>
+        <p>La computación y la tecnología han sido una pasión constante en mi vida, lo que me condujo a desarrollarme como Técnico en Desarrollo de Software.</p><br/>       
+        <p>Durante la pandemia, decidí aventurarme en el mundo del desarrollo web para perseguir mis metas y desde entonces, he estado inmerso en una amplia variedad de proyectos apasionantes.</p>
+    </div>
+    <div class="items-center w-full max-w-[250px] md:max-w-[450px] p-1 border border-white/10 rounded-xl h-fit md:-rotate-6 self-center">
+        <img
+        src="/about-me.webp"
+        class="w-full h-auto rounded-xl"
+        alt="facundo profile pic"
+      />
+    </div>
+    <div class="flex flex-col mx-auto mt-8 text-lg md:hidden opacity-90">
+        <p>Mi nombre completo es <span class="text-green-300">Facundo Emiliano Choque Silberman</span> y estoy en el mundo del desarrollo desde hace <span class="text-[#facc15]">casi 3 años</span>.</p><br/>
+        <p>La computación y la tecnología han sido una pasión constante en mi vida, lo que me condujo a desarrollarme como Técnico en Desarrollo de Software.</p><br/>       
+        <p>Durante la pandemia, decidí aventurarme en el mundo del desarrollo web para perseguir mis metas y desde entonces, he estado inmerso en una amplia variedad de proyectos apasionantes.</p>
+    </div>    
+</div>
