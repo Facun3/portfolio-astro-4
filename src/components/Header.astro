@@ -20,18 +20,19 @@ const navItems = [
 
 const resume = "https://drive.google.com/file/d/1U7Mt8139ye09Lx37Oy0xLS_AGeL4iQRH/view?usp=share_link";
 
+const mail="facusilberman@gmail.com"
 ---
 
 <header
   class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
 >
   <nav
-    class="flex px-3 text-sm font-medium rounded-full text-gray-600 justify-center items-center"
+    class="flex items-center justify-center px-3 text-sm font-medium text-gray-600 rounded-full"
   >
     {
       navItems.map((link) => (
         <a
-          class="relative block px-2 py-2 transition text-white hover:text-yellow-500"
+          class="relative block px-2 py-2 text-white transition hover:text-yellow-500"
           aria-label={link.label}
           href={link.url}
         >
@@ -39,10 +40,12 @@ const resume = "https://drive.google.com/file/d/1U7Mt8139ye09Lx37Oy0xLS_AGeL4iQR
         </a>
       ))
     }
-
-    <a class="relative block px-2 py-2 transition text-white hover:text-yellow-500" href={resume} target="_blank" download="Resume.pdf">
-        <span class="link">Mi CV</span>
-    </a>
+    <a class="relative block px-2 py-2 text-white transition hover:text-yellow-500" href={`mailto:${mail}`}>
+      <span class="link">Contacto</span>
+  </a>
+    <!-- <a class="relative block px-2 py-2 text-white transition hover:text-yellow-500" href={resume} target="_blank" download="Resume.pdf">
+        <span class="link">Contacto</span>
+    </a> -->
   </nav>
 </header>
 
