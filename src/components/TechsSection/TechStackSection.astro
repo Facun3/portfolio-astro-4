@@ -1,0 +1,229 @@
+---
+import Typography from "../../layout/Typography.astro";
+import TypescriptIcon from "../../layout/icons/languages/TypescriptIcon.astro";
+import JavaIcon from "../../layout/icons/languages/JavaIcon.astro";
+import JavascriptIcon from "../../layout/icons/languages/JavascriptIcon.astro";
+import CSharpIcon from "../../layout/icons/languages/CSharpIcon.astro";
+import HtmlIcon from "../../layout/icons/languages/HtmlIcon.astro";
+import Css3Icon from "../../layout/icons/languages/Css3Icon.astro";
+import AngularIcon from "../../layout/icons/frameworks/AngularIcon.astro";
+import NextJsIcon from "../../layout/icons/frameworks/NextJsIcon.astro";
+import NetCoreIcon from "../../layout/icons/frameworks/NetCoreIcon.astro";
+import BootstrapIcon from "../../layout/icons/libraries/BootstrapIcon.astro";
+import MaterialUiIcon from "../../layout/icons/libraries/MaterialUiIcon.astro";
+import ReactIcon from "../../layout/icons/libraries/ReactIcon.astro";
+import ScssIcon from "../../layout/icons/libraries/ScssIcon.astro";
+import TailwindIcon from "../../layout/icons/libraries/TailwindIcon.astro";
+import MongoDbIcon from "../../layout/icons/databases/MongoDbIcon.astro";
+import MySqlIcon from "../../layout/icons/databases/MySqlIcon.astro";
+import RiderIcon from "../../layout/icons/devtools/RiderIcon.astro";
+import VisualStudioCodeIcon from "../../layout/icons/devtools/VisualStudioCodeIcon.astro";
+import VisualStudioIcon from "../../layout/icons/devtools/VisualStudioIcon.astro";
+import BitbucketIcon from "../../layout/icons/devtools/BitbucketIcon.astro";
+import IntellijIcon from "../../layout/icons/devtools/IntellijIcon.astro";
+import GitIcon from "../../layout/icons/devtools/GitIcon.astro";
+import GithubIcon from "../../layout/icons/devtools/GithubIcon.astro";
+import PostmanIcon from "../../layout/icons/devtools/PostmanIcon.astro";
+import DockerIcon from "../../layout/icons/devtools/DockerIcon.astro";
+import SqlServerIcon from "../../layout/icons/databases/SqlServerIcon.astro";
+import SpringbootIcon from "../../layout/icons/devtools/SpringbootIcon.astro";
+
+const languages = [
+    {
+        name: "Typescript",
+        icon: TypescriptIcon
+    },
+    {
+        name: "Javascript",
+        icon: JavascriptIcon
+    },
+    {
+        name: "C#",
+        icon: CSharpIcon
+    },
+    {
+        name: "Java",
+        icon: JavaIcon
+    },
+    {
+        name: "HTML",
+        icon: HtmlIcon
+    },
+    {
+        name: "CSS",
+        icon: Css3Icon
+    },
+];
+const frameworks = [
+    {
+        name: "Angular",
+        icon: AngularIcon
+    },
+    {
+        name: ".NET Core",
+        icon: NetCoreIcon
+    },
+    {
+        name: "NextJS",
+        icon: NextJsIcon
+    },
+    
+];
+const libraries = [
+    {
+        name: "React",
+        icon: ReactIcon
+    },
+    {
+        name: "SCSS",
+        icon: ScssIcon
+    },
+    {
+        name: "Tailwind",
+        icon: TailwindIcon
+    },
+    {
+        name: "Bootstrap",
+        icon: BootstrapIcon
+    },
+    {
+        name: "Material UI",
+        icon: MaterialUiIcon
+    }
+];
+const databases = [
+    {
+        name: "MongoDB",
+        icon: MongoDbIcon,
+    },
+    {
+        name: "MySQL",
+        icon: MySqlIcon,
+    },
+    {
+        name: "SQL Server",
+        icon: SqlServerIcon
+    }
+];
+const developmentTools = [
+    {
+        name: "Spring Boot",
+        icon: SpringbootIcon
+    },
+    {
+        name: "Git",
+        icon: GitIcon
+    },
+    {
+        name: "GitHub",
+        icon: GithubIcon
+    },
+    {
+        name:"Bitbucket",
+        icon: BitbucketIcon
+    },
+    {
+        name: "Visual Studio Code",
+        icon: VisualStudioCodeIcon
+    },
+    {
+        name: "Visual Studio",
+        icon: VisualStudioIcon
+    },
+    {
+        name: "IntelliJ IDEA",
+        icon: IntellijIcon
+    },
+    {
+        name: "Rider",
+        icon: RiderIcon
+    },
+    {
+        name: "Postman",
+        icon: PostmanIcon
+    },
+    {
+        name: "Docker",
+        icon: DockerIcon
+    },
+];
+---
+
+<div class="flex flex-col items-start mb-6 md:ml-10 gap-y-6">
+    <div class="flex flex-row items-center">
+        <Typography as="h3" className="text-2xl font-bold">Languages</Typography>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+        {
+            languages.map((language) => (
+                <div class="flex items-center gap-2 border border-white/10 rounded-xl p-1.5 md:p-2 bg-white/5 hover:bg-white/10">
+                    <language.icon class="size-6" />
+                    <Typography as="span">
+                        {language.name}
+                    </Typography>
+                </div>
+            ))
+        }        
+    </div>
+    <div class="flex flex-row items-center">
+        <Typography as="h3" className="text-2xl font-bold">Frameworks</Typography>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+        {
+            frameworks.map((framework) => (
+                <div class="flex items-center gap-2 border border-white/10 rounded-xl p-1.5 md:p-2 bg-white/5 hover:bg-white/10">
+                    <framework.icon class="size-6" />
+                    <Typography as="span">
+                        {framework.name}
+                    </Typography>
+                </div>
+            ))
+        }        
+    </div>
+    <div class="flex flex-row items-center">
+        <Typography as="h3" className="text-2xl font-bold">Libraries</Typography>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+        {
+            libraries.map((library) => (
+                <div class="flex items-center gap-2 border border-white/10 rounded-xl p-1.5 md:p-2 bg-white/5 hover:bg-white/10">
+                    <library.icon class="size-6" />
+                    <Typography as="span">
+                        {library.name}
+                    </Typography>
+                </div>
+            ))
+        }        
+    </div>
+    <div class="flex flex-row items-center">
+        <Typography as="h3" className="text-2xl font-bold">Databases</Typography>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+        {
+            databases.map((database) => (
+                <div class="flex items-center gap-2 border border-white/10 rounded-xl p-1.5 md:p-2 bg-white/5 hover:bg-white/10">
+                    <database.icon class="size-6" />
+                    <Typography as="span">
+                        {database.name}
+                    </Typography>
+                </div>
+            ))
+        }        
+    </div>
+    <div class="flex flex-row items-center">
+        <Typography as="h3" className="text-2xl font-bold">Development Tools</Typography>
+    </div>
+    <div class="flex flex-wrap items-center gap-2">
+        {
+            developmentTools.map((devTool) => (
+                <div class="flex items-center gap-2 border border-white/10 rounded-xl p-1.5 md:p-2 bg-white/5 hover:bg-white/10">
+                    <devTool.icon class="size-6" />
+                    <Typography as="span">
+                        {devTool.name}
+                    </Typography>
+                </div>
+            ))
+        }        
+    </div>
+
+</div>

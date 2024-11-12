@@ -1,40 +1,41 @@
 ---
 import AboutMeSection from "../components/AboutMeSection.astro";
 import ExperienceTimeLine from "../components/ExperienceTimeLine.astro";
-import HeroSection from "../components/HeroSection.astro";
+import HeroSection from "../components/HeroSection/Hero.astro";
 import SectionContainer from "../components/SectionContainer.astro";
-import StarIcon from "../components/StarIcon.astro";
-import TechStackSection from "../components/TechStackSection.astro";
-import BriefcaseIcon from "../components/icons/BriefcaseIcon.astro";
-import GearIcon from "../components/icons/GearIcon.astro";
+import TechStackSection from "../components/TechsSection/TechStackSection.astro";
+import BriefcaseIcon from "../layout/icons/BriefcaseIcon.astro";
+import GearIcon from "../layout/icons/GearIcon.astro";
+import StarIcon from "../layout/icons/StarIcon.astro";
 import Layout from "../layout/Layout.astro";
+import Typography from "../layout/Typography.astro";
 ---
 
 <Layout 
-	title="Facu's Portfolio - Software Developer" 
-	desc="Contrata a Facundo para desarrolar tu sitio web.">
+	title="Facu Choque" 
+	desc="Facu's personal website ">
 	<main class="px-4">
-		<SectionContainer class="pt-24 pb-24">
+		<SectionContainer class="pt-40 pb-24">
 			<HeroSection/>
 		</SectionContainer>
-		<SectionContainer id="exp" class="pb-40">
-			<div class="flex flex-row items-center mb-6">
-				<BriefcaseIcon class="mb-1 mr-1 size-7"/>
-				<h2 class="ml-2 text-2xl font-bold">Experiencia Laboral</h2>
+		<SectionContainer id="exp" class="pb-32">
+			<div class="flex flex-row items-center mb-6 gap-2">
+				<BriefcaseIcon class="size-7 text-black dark:text-white"/>
+				<Typography	as="h2" className="ml-2 text-2xl font-bold">Experience</Typography>				
 			</div>
 			<ExperienceTimeLine/>
 		</SectionContainer>
-		<SectionContainer id="techs" class="pb-40">
-			<div class="flex flex-row items-center mb-6">
-				<GearIcon class="mr-1 size-7"/>
-				<h2 class="ml-2 text-2xl font-bold">Tecnologías</h2>
+		<SectionContainer id="techs" class="pb-32">
+			<div class="flex flex-row items-center mb-6 gap-2">
+				<GearIcon class="size-7 text-black dark:text-white"/>
+				<Typography	as="h2" className="ml-2 text-2xl font-bold">Technologies</Typography>
 			</div>
 			<TechStackSection/>
 		</SectionContainer>
-		<SectionContainer id="sobre-mi" class="pb-8 md:pb-40">
-			<div class="flex flex-row items-center mb-6">
-				<StarIcon class="mb-1 mr-1 size-7"/>
-				<h2 class="ml-2 text-2xl font-bold">Sobre Mí</h2>
+		<SectionContainer id="about" class="pb-20">
+			<div class="flex flex-row items-center mb-6 gap-2">
+				<StarIcon class="size-7 text-black dark:text-white"/>
+				<Typography	as="h2" className="ml-2 text-2xl font-bold">About Me</Typography>
 			</div>
 			<AboutMeSection/>
 		</SectionContainer>

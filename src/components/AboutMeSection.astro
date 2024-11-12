@@ -1,33 +1,62 @@
 ---
+import Typography from "../layout/Typography.astro";
+import Gallery from "./Gallery/Gallery.astro";
+
 const getEdad = () => {
   const dateBirth = new Date('1996-09-24');
-
   const actualDate = new Date();
-  actualDate.setUTCHours(0, 0, 0, 0);
-  const diffMs = actualDate.getDate() - dateBirth.getDate();
-  const age = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 365));
+  
+  // Calculate age based on the year and month difference
+  let age = actualDate.getFullYear() - dateBirth.getFullYear();
+  const monthDiff = actualDate.getMonth() - dateBirth.getMonth();
 
-  return age
+  // Adjust if birth month/day hasn't occurred this year yet
+  if (monthDiff < 0 || (monthDiff === 0 && actualDate.getDate() < dateBirth.getDate())) {
+    age--;
+  }
 
-}
+  return age;
+};
+
+var content = `My name is Facundo Choque, I am ${getEdad()} years old and I have been in the development world since 2021. <br><br> 
+My interest in the world of technology began during my high school days, where I had the opportunity to get in touch with technology at fairs and projects. Since I finished high school, I've been on a learning journey either in some years of University, Higher Education, or courses.<br><br>
+During the pandemic, I decided to venture into the world of web development to pursue my goals and since then, I've been immersed in a wide variety of exciting projects. <br><br>
+I really enjoy traveling, food, and good company. My hobbies are Japanese culture, traveling, and motorcycling.`;
+
 ---
 
-<div class="flex flex-col md:flex-row gap-x-4 md:gap-x-0 md:justify-between">
-    <div class="flex-col hidden mx-auto mr-8 text-lg md:flex">
-        <p>Mi nombre completo es <span class="text-green-300">Facundo Emiliano Choque Silberman</span>, tengo 27 años y estoy en el mundo del desarrollo desde hace <span class="text-[#facc15]">casi 3 años</span>.</p><br/>
-        <p>La computación y la tecnología han sido una pasión constante en mi vida, lo que me condujo a desarrollarme como <span class="text-green-300">Técnico en Desarrollo de Software</span> .</p><br/>       
-        <p>Durante la pandemia, decidí aventurarme en el mundo del desarrollo web para perseguir mis metas y desde entonces, <span class="text-[#facc15]">he estado inmerso en una amplia variedad de proyectos apasionantes</span>.</p>
-    </div>
-    <div class="items-center w-full max-w-[250px] md:max-w-[450px] p-1 border border-white/10 rounded-xl h-fit md:-rotate-6 self-center">
-        <img
-        src="/about-me.webp"
-        class="w-full h-auto rounded-xl"
-        alt="facundo profile pic"
-      />
-    </div>
-    <div class="flex flex-col mx-auto mt-8 text-lg md:hidden opacity-90">
-        <p>Mi nombre completo es <span class="text-green-300">Facundo Emiliano Choque Silberman</span>, tengo 27 años y estoy en el mundo del desarrollo desde hace <span class="text-[#facc15]">casi 3 años</span>.</p><br/>
-        <p>La computación y la tecnología han sido una pasión constante en mi vida, lo que me condujo a desarrollarme como <span class="text-green-300">Técnico en Desarrollo de Software</span>.</p><br/>       
-        <p>Durante la pandemia, decidí aventurarme en el mundo del desarrollo web para perseguir mis metas y desde entonces, <span class="text-[#facc15]">he estado inmerso en una amplia variedad de proyectos</span>.</p>
+<div class="flex flex-col gap-x-4 md:gap-x-0 md:justify-between">
+  <div class="h-max">
+    <div class="flex flex-col mx-auto mb-8 text-lg opacity-90">    
+      <Typography as="p2" class="text-md" set:html={content}/>
     </div>    
+    <Gallery images={[
+      {
+        src: "/lago.webp",
+        alt: "Lago Nahuel Huapi, Rio Negro",
+        caption: "Lago Nahuel Huapi, Rio Negro"
+      },
+      {
+        src: "/cabo.webp",
+        alt: "Cabo San Pablo, Tierra del Fuego",
+        caption: "Cabo San Pablo, Tierra del Fuego"
+      },
+      {
+        src: "/tilcara.webp",
+        alt: "Tilcara, Jujuy",
+        caption: "Tilcara, Jujuy"
+      },
+
+      {
+        src: "/laguna-esmeralda.webp",
+        alt: "Laguna Esmeralda, Ushuaia",
+        caption: "Laguna Esmeralda, Ushuaia",
+      },
+      {
+        src: "/festejo.webp",
+        alt: "Argentina Campeona, Mar del Plata",
+        caption: "Argentina Campeona, Mar del Plata",
+      },
+    ]} />
+  </div>  
 </div>

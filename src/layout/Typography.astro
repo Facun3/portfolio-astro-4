@@ -1,0 +1,13 @@
+---
+// fonts.astro
+// This file allows you to use custom fonts with regular HTML tags like <h1>, <h2>, etc.
+
+const { as = 'p', ...rest } = Astro.props;
+---
+  {as === 'h1' && <h1 class={`text-2xl md:text-3xl font-bold text-black dark:text-white` } {...rest}><slot/></h1>}
+  {as === 'h2' && <h2 class={`text-lg md:text-xl font-semibold text-black dark:text-white`} {...rest}><slot/></h2>}
+  {as === 'h3' && <h3 class={`text-md md:text-lg font-semibold text-black dark:text-white`} {...rest}><slot/></h3>}
+  {as === 'span' && <span class={`text-base text-black dark:text-white`} {...rest}><slot/></span>}
+  {as === 'p' && <p class={`text-base text-black dark:text-white`} {...rest}><slot/></p>}
+  {as === 'p2' && <p class={`text-md text-black dark:text-white`} {...rest}><slot/></p>}
+  {as === 'time' && <time class="block mb-1 text-sm text-gray-500"><slot/></time>}
