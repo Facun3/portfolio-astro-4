@@ -1,35 +1,57 @@
+
 ---
+
 import ExperienceItem from "./ExperienceItem.astro"
 
 const EXPERIENCE = [
     {
-        date: "Febrero 2024 - Actualidad",
-        title: "Prosocial(USA)",
-        desc: "Encargado del mantenimiento y actualización de diversas aplicaciones utilizando tecnologías como Angular, Java, Mongo. Múltiples integraciones con servicios AWS, Auth0, Salesforce, Stripe y Zoom.",        
+        date: "Feb 2024 – Present",
+        title: "Ssr Full Stack Developer",
+        company: "Prosocial (USA)",
+        desc: [
+            "Led the maintenance and updates of multiple applications using Angular, Java, and MongoDB.",
+            "Implemented system integrations with AWS, Auth0, Salesforce, Stripe, and Zoom."
+        ],
+        techStack: ["Angular", "Java", "MongoDB", "AWS", "Auth0", "Salesforce"]
     },
     {
-        date: "Octubre 2023 - Febrero 2024",
-        title: "BeeReal(ARG)",
-        desc: "Desarrollo equipo de una pagina web landing utilizando técnologías NextJS, Tailwind, Strapi. Se enfatizaron aspectos como la accesibilidad, experiencia de usuario y rendimiento.",
+        date: "Oct 2023 – Feb 2024",
+        title: "Software Developer",
+        company: "BeeReal (ARG)",
+        desc: [
+            "Developed a high-performance landing page using Next.js, Tailwind CSS, and Strapi.",
+            "Emphasized accessibility, user experience, and optimization for mobile devices."
+        ],
+        techStack: ["Next.js", "Tailwind CSS", "Strapi"]
     },
     {
-        date: "Agosto 2022 - Octubre 2023",
-        title: "OSPRERA(ARG)",
-        desc: "Mantenimiento y actualización de aplicaciones web internas para una aseguradora de salud utilizando tecnologías como Angular, .NET Core, SQL Server. Testing con MS Test.",
+        date: "Aug 2022 – Oct 2023",
+        title: "Full Stack Developer",
+        company: "OSPRERA (ARG)",
+        desc: [
+            "Maintained and updated internal web applications for a health insurance provider using Angular and .NET Core.",
+            "Conducted testing with MS Test, ensuring high-quality releases."
+        ],
+        techStack: ["Angular", ".NET Core", "SQL Server", "MS Test"]
     },
     {
-        date: "Octubre 2021 - Agosto 2022",
-        title: "Hipódromo de Chile (CHL)",
-        desc: "Desarrollo de diversas aplicaciones web y API REST, junto con el equipo de TI del hipódromo, utilizando Angular junto con Material Design o PrimeNg, y NetCore para el backend con tecnologías como Entity Framework, LINQ, SQL Server y JWT.",
+        date: "Oct 2021 – Aug 2022",
+        title: "Full Stack Developer",
+        company: "Hipódromo de Chile (CHL)",
+        desc: [
+            "Collaborated with the IT team to develop various web applications and REST APIs.",
+            "Utilized Angular with Material Design and .NET Core for backend services."
+        ],
+        techStack: ["Angular", "Material Design", ".NET Core", "Entity Framework"]
     }
-]
+];
 
 ---
 
 <ol class="relative border-s border-gray-200 dark:border-gray-700">
     {
         EXPERIENCE.map(experience => (
-            <li class="mb-10 ms-6">
+            <li class="mb-10">
                 <ExperienceItem {...experience}/>
             </li>            
         ))

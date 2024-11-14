@@ -1,17 +1,46 @@
 ---
+import Typography from '../layout/Typography.astro';
+
 
 interface Props {
     date: string;
     title: string;
-    desc: string;
+    company: string;
+    desc: string[];
+    techStack?: string[];
     link?: string;
 }
 
-const { date, title, desc, link } = Astro.props; 
+const { date, title, company, desc, techStack, link } = Astro.props;
 
 ---
 
+<div class="relative mb-8">
+    <div class="absolute w-4 h-4 bg-[#facc15] rounded-full top-[2.75rem] left-[-.5rem]"></div>
+    <div class="ms-6 border-[1px] border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white/5 dark:bg-gray-800">
+        <Typography as="time">{date}</Typography>
+        <Typography as="h3" className="text-lg font-semibold text-[#facc15]">{title}</Typography>
+        <Typography as="h3">{company}</Typography>
+        <ul class="mt-2 space-y-1 text-gray-200">
+            {desc.map((item, index) => (
+                <li class="flex items-start">
+                    <span class="mr-2">•</span> {item}
+                </li>
+            ))}
+        </ul>
+        {techStack && (
+            <div class="mt-2">
+                <Typography as="span">
+                    <strong>Technologies:</strong> {techStack.join(', ')}
+                </Typography>
+            </div>
+        )}
+    </div>
+</div>
+
+
+<!-- 
 <div class="absolute w-3 h-3 bg-[#facc15] rounded-full mt-[0.45rem] -start-1.5"></div>
-        <time class="mb-1 text-sm font-normal leading-none text-white">{date}</time>
-        <h3 class="text-lg font-semibold text-[#facc15]">{title}</h3>
-        <p class="mb-4 text-base font-normal text-white">{desc}</p>
+<time class="mb-1 text-sm font-normal leading-none text-white">{date}</time>
+<h3 class="text-lg font-semibold text-[#facc15]">{title}</h3>
+<p class="mb-4 text-base font-normal text-white">{desc}</p> -->

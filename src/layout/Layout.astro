@@ -2,17 +2,42 @@
 import { ViewTransitions } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import '@fontsource-variable/inter'
-
 interface Props{
     title: string;
     desc: string;
 }
+
 const { desc, title } = Astro.props; 
+
+const GA_MEASUREMENT_ID = "G-VQFM80T5BV";
+
+const darkMode = true;
+const primary = 'bg-white';
+const secondary = 'bg-gray-900'; 
+
+const getColor = () => {
+  if (darkMode) {
+    return secondary;
+  } else {
+    return primary;
+  }
+};
+
 ---
 
 <!doctype html>
-<html lang="es">
+
+<html lang="es" class="dark">
 	<head>
+    <!-- Google tag (gtag.js) -->
+    <script type="text/partytown" async src=`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`></script>
+    <script type="text/partytown">
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'MEASUREMENT_ID');
+    </script>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="description" content={desc}/>
@@ -22,10 +47,11 @@ const { desc, title } = Astro.props;
         <ViewTransitions />        
 	</head>
 	<body class="relative">
-            <div
+            <!-- <div
             class="absolute inset-0 z-[-2] min-h-screen w-full bg-gray-900
             bg-[radial-gradient(ellipse_at_center,_#640d14,_rgba(255,255,255,0))]"
-        >
+        > -->
+            <div class={`absolute inset-0 z-[-2] min-h-screen w-full bg-white dark:bg-gray-900`}></div>
         </div>
         <Header/>
         <slot/>
@@ -44,8 +70,7 @@ const { desc, title } = Astro.props;
         display: flex;
         flex-direction: column;
         min-height: 100dvh;
-        overscroll-behavior: none;
-        color: white;
+        overscroll-behavior: none;        
       }
 
       @media (prefers-reduced-motion: reduce) {

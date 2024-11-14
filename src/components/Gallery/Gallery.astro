@@ -1,0 +1,143 @@
+---
+import Typography from "../../layout/Typography.astro";
+
+const { images = [] } = Astro.props;
+var content2 = `🇦🇷 Treasures of my country`;
+
+---
+<div class="flex flex-col mx-auto mt-8 text-lg opacity-90">    
+    <Typography as="p" class="italic">
+      {content2}
+    </Typography>
+  </div>
+<section class="slider-gallery max-h-[400px] md:max-h-[500px] overflow-hidden">
+  <div class="slider-container" id="slider-container">
+    {images.map((image, index) => (
+      <div class="slide">
+        <img src={image.src} alt={image.alt} class="slide-image max-w-[500px]" />
+        <div class="overlay">
+          <span class="caption">{image.caption}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+  <button class="hidden md:inline nav-button prev" id="prev-button" aria-label="Previous slide">❮</button>
+  <button class="hidden md:inline nav-button next" id="next-button" aria-label="Next slide">❯</button>
+</section>
+
+<script>
+  const sliderContainer = document.getElementById('slider-container');
+  const nextButton = document.getElementById('next-button');
+  const prevButton = document.getElementById('prev-button');
+  let scrollAmount = 0;
+  const slideWidth = sliderContainer.clientWidth;
+
+  nextButton.addEventListener('click', () => {
+    scrollAmount += slideWidth;
+    sliderContainer.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  prevButton.addEventListener('click', () => {
+    scrollAmount -= slideWidth;
+    sliderContainer.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+  });
+</script>
+
+<style>
+/* Slider Gallery Styles */
+.slider-gallery {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.slider-container {
+  display: flex;
+  scroll-behavior: smooth;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.slider-container::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  position: relative;
+  min-width: 80%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.slide-image {
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  border-radius: 8px;
+  object-fit:fill;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  border-radius: 8px;
+  opacity: 0;
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  transition: opacity 0.4s ease;
+  padding: 1rem;
+}
+
+.slide:hover .overlay {
+  opacity: 1;
+}
+
+.caption {
+  color: white;
+  opacity: 0.8;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: right;
+  padding: 0.5rem;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 0.5rem;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.nav-button.prev {
+  left: 10px;
+}
+
+.nav-button.next {
+  right: 10px;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+  .slide {
+    min-width: 50%;
+  }
+}
+</style>
