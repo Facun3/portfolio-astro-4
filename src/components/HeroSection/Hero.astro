@@ -9,12 +9,12 @@ import GithubIcon from "../../layout/icons/devtools/GithubIcon.astro";
 const headerInfo = {
   name: "Facundo Choque",
   title: "FullStack Developer  💻",
-  subtitle: "Im a passionate about Web Development, currently working as a Frontend Developer at BeeReal.",
+  subtitle: "Building the digital future I believe in, one piece of code at a time.",
   location: "Córdoba, Argentina  🇦🇷",
 };
 ---
 
-<div class="flex flex-col md:flex-row w-full items-center md:items-start md:justify-center gap-4">
+<div class="flex flex-col md:flex-row w-full items-center md:items-start md:justify-center gap-4 border-[1px] border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-white/5 dark:bg-gray-800">
   <div class="flex items-center md:justify-start md:mb-6 md:w-[400px] px-4">
     <img
       src="/profile.webp"
@@ -24,24 +24,24 @@ const headerInfo = {
   </div>
   <div class="flex flex-col items-center md:items-start md:max-w-100">
     <Typography as="h1" className="mt-4">{headerInfo.name}</Typography>
-    <Typography as="h2" className="mt-2"> {headerInfo.title}</Typography>
-    <Typography as="span" className="mt-1">{headerInfo.location}</Typography>
+    <Typography as="h2" className="mt-4"> {headerInfo.title}</Typography>
+    <Typography as="span" className="mt-2">{headerInfo.location}</Typography>
     <div class="flex w-full md:h-20 items-center">
-      <Typography as="span" className="mt-6 opacity-90">{headerInfo.subtitle}</Typography>
+      <Typography as="span" className="mt-6 opacity-90 italic">{headerInfo.subtitle}</Typography>
     </div>
     <nav class="flex mt-4 gap-x-4">
       <SocialBadge href="https://www.linkedin.com/in/facundo-choque/">
         <LinkedinIcon class="size-5 text-black dark:text-white"/>
-        <Typography as="span" class="hidden md:inline">Linkedin</Typography>
+        <div class="hidden md:inline"><Typography as="span">Linkedin</Typography></div>
       </SocialBadge>
       <SocialBadge href="https://github.com/Facun3">
         <GithubIcon class="size-5 text-black dark:text-white" />
-        <Typography as="span" class="hidden md:inline">Github</Typography>
+        <div class="hidden md:inline"><Typography as="span">Github</Typography></div>
       </SocialBadge>
   
       <SocialBadge href="mailto:dev.facundo.choque@gmail.com?subject=Hello%20Facundo%20">
             <MailIcon class="size-5 text-black dark:text-white"/>
-            <Typography as="span" class="hidden md:inline">Email</Typography>
+            <div class="hidden md:inline"><Typography as="span">Email</Typography></div>  
         </SocialBadge>
     </nav>
   </div>
