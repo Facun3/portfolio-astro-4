@@ -2,7 +2,7 @@
 import Typography from "../../layout/Typography.astro";
 
 const { images = [] } = Astro.props;
-var content2 = `🇦🇷 Treasures of my country ❤️`;
+var content2 = `🇦🇷 Treasures of my country`;
 
 ---
 <div class="flex flex-col mx-auto mt-8 text-lg opacity-90">    
@@ -21,8 +21,8 @@ var content2 = `🇦🇷 Treasures of my country ❤️`;
       </div>
     ))}
   </div>
-  <button class="nav-button prev" id="prev-button" aria-label="Previous slide">❮</button>
-  <button class="nav-button next" id="next-button" aria-label="Next slide">❯</button>
+  <button class="hidden md:inline nav-button prev" id="prev-button" aria-label="Previous slide">❮</button>
+  <button class="hidden md:inline nav-button next" id="next-button" aria-label="Next slide">❯</button>
 </section>
 
 <script>

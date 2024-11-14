@@ -4,8 +4,10 @@ import ExperienceTimeLine from "../components/ExperienceTimeLine.astro";
 import HeroSection from "../components/HeroSection/Hero.astro";
 import SectionContainer from "../components/SectionContainer.astro";
 import TechStackSection from "../components/TechsSection/TechStackSection.astro";
+import WhatIDoSection from "../components/WhatIDoSection.astro";
 import BriefcaseIcon from "../layout/icons/BriefcaseIcon.astro";
 import GearIcon from "../layout/icons/GearIcon.astro";
+import LightBulbIcon from "../layout/icons/LightBulbIcon.astro";
 import StarIcon from "../layout/icons/StarIcon.astro";
 import Layout from "../layout/Layout.astro";
 import Typography from "../layout/Typography.astro";
@@ -24,6 +26,13 @@ import Typography from "../layout/Typography.astro";
 				<Typography	as="h2" className="ml-2 text-2xl font-bold">Experience</Typography>				
 			</div>
 			<ExperienceTimeLine/>
+		</SectionContainer>
+		<SectionContainer id="what-i-do" class="pb-32">
+			<div class="flex flex-row items-center mb-6 gap-2">
+				<LightBulbIcon class="size-7 text-black dark:text-white"/>
+				<Typography	as="h2" className="ml-2 text-2xl font-bold">What I Do?</Typography>
+			</div>
+			<WhatIDoSection/>
 		</SectionContainer>
 		<SectionContainer id="techs" class="pb-32">
 			<div class="flex flex-row items-center mb-6 gap-2">
