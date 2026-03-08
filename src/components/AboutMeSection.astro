@@ -1,35 +1,33 @@
 ---
+
 import Typography from "../layout/Typography.astro";
 import Gallery from "./Gallery/Gallery.astro";
+import { t, type Lang } from '../i18n';
 
-const getEdad = () => {
-  const dateBirth = new Date('1996-09-24');
-  const actualDate = new Date();
-  
-  // Calculate age based on the year and month difference
-  let age = actualDate.getFullYear() - dateBirth.getFullYear();
-  const monthDiff = actualDate.getMonth() - dateBirth.getMonth();
+interface Props {
+  lang?: Lang;
+}
 
-  // Adjust if birth month/day hasn't occurred this year yet
-  if (monthDiff < 0 || (monthDiff === 0 && actualDate.getDate() < dateBirth.getDate())) {
-    age--;
-  }
+const { lang = 'en' } = Astro.props;
 
-  return age;
-};
+// Calculate age
+const dateBirth = new Date('1996-09-24');
+const now = new Date();
+let age = now.getFullYear() - dateBirth.getFullYear();
+if (now.getMonth() < dateBirth.getMonth() ||
+    (now.getMonth() === dateBirth.getMonth() && now.getDate() < dateBirth.getDate())) {
+  age--;
+}
 
-var content = `My name is Facundo Choque, I am ${getEdad()} years old and I have been in the development world since 2021. <br><br> 
-My interest in the world of technology began during my high school days, where I had the opportunity to get in touch with technology at fairs and projects. Since I finished high school, I've been on a learning journey either in some years of University, Higher Education, or courses.<br><br>
-During the pandemic, I decided to venture into the world of web development to pursue my goals and since then, I've been immersed in a wide variety of exciting projects. <br><br>
-I really enjoy traveling, food, and good company. My hobbies are Japanese culture, traveling, and motorcycling.`;
-
+// Get bio with age substituted
+const bio = t(lang, 'aboutme_bio').replace('{edad}', String(age));
 ---
 
 <div class="flex flex-col gap-x-4 md:gap-x-0 md:justify-between">
   <div class="h-max">
-    <div class="flex flex-col mx-auto mb-8 text-lg opacity-90 border-[1px] border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-white/5 dark:bg-gray-800">    
-      <Typography as="p2" class="text-md" set:html={content}/>
-    </div>    
+    <div class="flex flex-col mx-auto mb-8 text-lg opacity-90 border-[1px] border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-white/5 dark:bg-gray-800">
+      <Typography as="p2" class="text-md" id="aboutme-bio" set:html={bio}/>
+    </div>
     <Gallery images={[
       {
         src: "/lago.webp",
@@ -58,5 +56,5 @@ I really enjoy traveling, food, and good company. My hobbies are Japanese cultur
         caption: "Argentina Campeon, Mar del Plata",
       },
     ]} />
-  </div>  
+  </div>
 </div>

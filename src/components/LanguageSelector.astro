@@ -1,0 +1,233 @@
+---
+import { type Lang, getAllTranslations } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang = 'en' } = Astro.props;
+
+// Obtener todas las traducciones para ambos idiomas
+const enTranslations = getAllTranslations('en');
+const esTranslations = getAllTranslations('es');
+---
+
+<div class="lang-toggle" id="lang-toggle">
+  <button
+    id="lang-en"
+    class={`lang-btn ${lang === 'en' ? 'selected' : ''}`}
+    aria-label="English"
+    type="button"
+  >
+    <span class="lang-flag" style="background: none;">🇬🇧</span> EN
+  </button>
+  <button
+    id="lang-es"
+    class={`lang-btn ${lang === 'es' ? 'selected' : ''}`}
+    aria-label="Español"
+    type="button"
+  >
+    <span class="lang-flag" style="background: none;">🇪🇸</span> ES
+  </button>
+</div>
+
+<script define:vars={{ enTranslations, esTranslations }}>
+  // Función para actualizar el contenido dinámicamente
+  function updateContent(lang) {
+    // Actualizar atributo del HTML
+    document.documentElement.setAttribute('lang', lang);
+    
+    // Guardar en localStorage
+    localStorage.setItem('lang', lang);
+    
+    // Actualizar estado visual de los botones
+    const enBtn = document.getElementById('lang-en');
+    const esBtn = document.getElementById('lang-es');
+    
+    if (enBtn && esBtn) {
+      enBtn.classList.toggle('selected', lang === 'en');
+      esBtn.classList.toggle('selected', lang === 'es');
+    }
+    
+    // Obtener traducciones del objeto inyectado
+    const texts = lang === 'es' ? esTranslations : enTranslations;
+    updateDynamicTexts(lang, texts);
+  }
+  
+  // Función para actualizar todos los textos dinámicamente
+  function updateDynamicTexts(lang, texts) {
+    
+    // Actualizar navegación y títulos simples
+    Object.keys(texts).forEach(key => {
+      const element = document.getElementById(key);
+      if (element) {
+        element.textContent = texts[key];
+      }
+    });
+    
+    // Actualizar Experience Timeline
+    updateExperienceTimeline(lang, texts);
+    
+    // Actualizar About Me
+    updateAboutMe(lang, texts);
+    
+    // Actualizar What I Do Section
+    updateWhatIDoSection(lang, texts);
+    
+    // Actualizar Tech Stack Section
+    updateTechStackSection(lang, texts);
+    
+  }
+  
+  // Función para actualizar Experience Timeline
+  function updateExperienceTimeline(lang, texts) {
+    // Actualizar títulos de experiencia
+    const expTitles = document.querySelectorAll('[data-exp-title]');
+    expTitles.forEach((title, index) => {
+      const key = `exp_title_${index + 1}`;
+      if (texts[key]) {
+        title.textContent = texts[key];
+      }
+    });
+    
+    // Actualizar empresas
+    const expCompanies = document.querySelectorAll('[data-exp-company]');
+    expCompanies.forEach((company, index) => {
+      const key = `exp_company_${index + 1}`;
+      if (texts[key]) {
+        company.textContent = texts[key];
+      }
+    });
+    
+    // Actualizar descripciones
+    const expDescs = document.querySelectorAll('[data-exp-desc]');
+    expDescs.forEach((desc, index) => {
+      const descIndex = Math.floor(index / 2) + 1;
+      const subIndex = (index % 2) + 1;
+      const key = `exp_desc_${descIndex}_${subIndex}`;
+      if (texts[key]) {
+        desc.textContent = texts[key];
+      }
+    });
+    
+    // Actualizar etiqueta de tech stack
+    const techStackLabels = document.querySelectorAll('[data-tech-stack-label]');
+    techStackLabels.forEach(label => {
+      if (texts['tech_stack_label']) {
+        label.textContent = texts['tech_stack_label'];
+      }
+    });
+  }
+  
+  // Función para actualizar About Me
+  function updateAboutMe(lang, texts) {
+    const aboutBio = document.getElementById('aboutme-bio');
+    if (aboutBio && texts['aboutme_bio']) {
+      // Calcular edad dinámicamente
+      const dateBirth = new Date('1996-09-24');
+      const actualDate = new Date();
+      let age = actualDate.getFullYear() - dateBirth.getFullYear();
+      const monthDiff = actualDate.getMonth() - dateBirth.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && actualDate.getDate() < dateBirth.getDate())) {
+        age--;
+      }
+      
+      const bioText = texts['aboutme_bio'].replace('{edad}', age);
+      aboutBio.innerHTML = bioText;
+    }
+  }
+  
+  // Función para actualizar What I Do Section
+  function updateWhatIDoSection(lang, texts) {
+    // Actualizar título
+    const whatIDoTitle = document.getElementById('whatido-title');
+    if (whatIDoTitle && texts['whatido_title']) {
+      whatIDoTitle.textContent = texts['whatido_title'];
+    }
+    
+    // Actualizar elementos de la lista
+    const whatIDoItems = document.querySelectorAll('[data-whatido-item]');
+    whatIDoItems.forEach((item, index) => {
+      const key = `whatido_${index + 1}`;
+      if (texts[key]) {
+        item.textContent = texts[key];
+      }
+    });
+  }
+  
+  // Función para actualizar Tech Stack Section
+  function updateTechStackSection(lang, texts) {
+    // Actualizar títulos de secciones
+    const techSectionTitles = document.querySelectorAll('[data-tech-section-title]');
+    techSectionTitles.forEach((title, index) => {
+      const keys = ['tech_section_languages', 'tech_section_frameworks', 'tech_section_libraries', 'tech_section_databases', 'tech_section_devtools'];
+      const key = keys[index];
+      if (key && texts[key]) {
+        title.textContent = texts[key];
+      }
+    });
+  }
+  
+  // Inicializar cuando el DOM esté listo
+  function initLanguageSelector() {
+    const enBtn = document.getElementById('lang-en');
+    const esBtn = document.getElementById('lang-es');
+    
+    if (!enBtn || !esBtn) return;
+    
+    // Cargar idioma guardado o usar el actual
+    const savedLang = localStorage.getItem('lang');
+    const currentLang = savedLang || 'en';
+    
+    // Aplicar idioma actual
+    updateContent(currentLang);
+    
+    // Event listeners
+    enBtn.addEventListener('click', () => updateContent('en'));
+    esBtn.addEventListener('click', () => updateContent('es'));
+  }
+  
+  // Inicializar
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLanguageSelector);
+  } else {
+    initLanguageSelector();
+  }
+  
+  // Reinicializar después de View Transitions
+  document.addEventListener('astro:page-load', initLanguageSelector);
+</script>
+
+<style>
+  .lang-toggle {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .lang-btn {
+    display: flex;
+    align-items: center;
+    border: 2px solid #2563eb;
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    background: white;
+    color: #2563eb;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .lang-btn.selected {
+    background: #2563eb;
+    color: white;
+  }
+  .lang-flag {
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 0.4em;
+    border-radius: 50%;
+    background: #eee;
+    display: inline-block;
+  }
+  @media (max-width: 640px) {
+    .lang-toggle { gap: 0.2rem; }
+    .lang-btn { padding: 0.2rem 0.5rem; font-size: 0.95em; }
+  }
+</style>

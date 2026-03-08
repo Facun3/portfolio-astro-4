@@ -12,14 +12,17 @@ import JavaIcon from "../layout/icons/languages/JavaIcon.astro";
 import TailwindIcon from "../layout/icons/libraries/TailwindIcon.astro";
 import Typography from "../layout/Typography.astro";
 
-// Section content
+import { t, type Lang } from '../i18n';
+
+const { lang = 'en' } = Astro.props;
+
 const sectionContent = {
-  title: "Full Stack Development",
-  subcontents: [
-    "⚡   Building responsive websites front end using Angular, Next.js, and Tailwind CSS.",
-    "💻   Developing backend APIs using Java, Spring Boot, and MongoDB.",
-    "🔧   Maintaining and updating existing applications using AngularJs, Java, and .NET Core.",
-  ]
+    title: t(lang, 'whatido_title'),
+    subcontents: [
+        t(lang, 'whatido_1'),
+        t(lang, 'whatido_2'),
+        t(lang, 'whatido_3')
+    ]
 };
 
 // Array of technology icons
@@ -41,8 +44,8 @@ const techIcons = [
 
 <div class="flex flex-col items-center md:items-start border-[1px] border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-white/5 dark:bg-gray-800">
 
-    <div class="flex w-full itemss-center justify-center mb-4">
-        <Typography as="h2" class="mb-6"> {sectionContent.title}</Typography>
+    <div class="flex w-full items-center justify-center mb-4">
+        <Typography as="h2" class="mb-6" id="whatido_title">{sectionContent.title}</Typography>
     </div>
 
     <!-- Infinite Wavy Slide of Tech Icons -->
@@ -65,8 +68,8 @@ const techIcons = [
         {sectionContent.subcontents.map((item, index) => (
             <li class="flex items-start mr-2">
                 <div class="flex my-6">
-                    <Typography as="span" class="mb-2">{item}</Typography>
-                </div>                                
+                    <Typography as="span" class="mb-2" data-whatido-item>{item}</Typography>
+                </div>
             </li>
         ))}
     </ul>
