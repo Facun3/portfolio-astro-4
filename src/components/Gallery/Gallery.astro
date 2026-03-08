@@ -1,143 +1,111 @@
 ---
-import Typography from "../../layout/Typography.astro";
-
 const { images = [] } = Astro.props;
-var content2 = `🇦🇷 Treasures of my country`;
-
 ---
-<div class="flex flex-col mx-auto mt-8 text-lg opacity-90">    
-    <Typography as="p" class="italic">
-      {content2}
-    </Typography>
-  </div>
-<section class="slider-gallery max-h-[400px] md:max-h-[500px] overflow-hidden">
-  <div class="slider-container" id="slider-container">
-    {images.map((image, index) => (
-      <div class="slide">
-        <img src={image.src} alt={image.alt} class="slide-image max-w-[500px]" />
-        <div class="overlay">
-          <span class="caption">{image.caption}</span>
+
+<div class="gallery-wrapper" aria-label="Photo gallery">
+  <div class="gallery-track">
+    {images.map((image) => (
+      <div class="gallery-item">
+        <img src={image.src} alt={image.alt} class="gallery-img" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="gallery-caption">{image.caption}</span>
+        </div>
+      </div>
+    ))}
+    {/* Duplicate for seamless infinite loop */}
+    {images.map((image) => (
+      <div class="gallery-item" aria-hidden="true">
+        <img src={image.src} alt="" class="gallery-img" loading="lazy" />
+        <div class="gallery-overlay">
+          <span class="gallery-caption">{image.caption}</span>
         </div>
       </div>
     ))}
   </div>
-  <button class="hidden md:inline nav-button prev" id="prev-button" aria-label="Previous slide">❮</button>
-  <button class="hidden md:inline nav-button next" id="next-button" aria-label="Next slide">❯</button>
-</section>
-
-<script>
-  const sliderContainer = document.getElementById('slider-container');
-  const nextButton = document.getElementById('next-button');
-  const prevButton = document.getElementById('prev-button');
-  let scrollAmount = 0;
-  const slideWidth = sliderContainer.clientWidth;
-
-  nextButton.addEventListener('click', () => {
-    scrollAmount += slideWidth;
-    sliderContainer.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-  });
-
-  prevButton.addEventListener('click', () => {
-    scrollAmount -= slideWidth;
-    sliderContainer.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-  });
-</script>
+</div>
 
 <style>
-/* Slider Gallery Styles */
-.slider-gallery {
-  position: relative;
-  max-width: 100%;
+.gallery-wrapper {
   overflow: hidden;
-  padding: 1rem 0;
-}
-
-.slider-container {
-  display: flex;
-  scroll-behavior: smooth;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.slider-container::-webkit-scrollbar {
-  display: none;
-}
-
-.slide {
-  position: relative;
-  min-width: 80%;
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 0.5rem;
-}
-
-.slide-image {
   width: 100%;
-  height: auto;
-  max-height: 360px;
-  border-radius: 8px;
-  object-fit:fill;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 2rem 0;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
+.gallery-wrapper:hover .gallery-track {
+  animation-play-state: paused;
+}
 
-.overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  border-radius: 8px;
-  opacity: 0;
+.gallery-track {
   display: flex;
-  align-items: end;
-  justify-content: end;
-  transition: opacity 0.4s ease;
-  padding: 1rem;
+  gap: 1rem;
+  width: max-content;
+  animation: gallery-scroll 35s linear infinite;
 }
 
-.slide:hover .overlay {
+@keyframes gallery-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.gallery-item {
+  position: relative;
+  flex-shrink: 0;
+  width: 300px;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s ease, z-index 0s;
+  z-index: 0;
+}
+
+.gallery-item:hover {
+  transform: scale(1.12);
+  z-index: 10;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: filter 0.4s ease;
+  display: block;
+}
+
+.gallery-item:hover .gallery-img {
+  filter: brightness(0.8);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 55%);
+  border-radius: 12px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
   opacity: 1;
 }
 
-.caption {
+.gallery-caption {
   color: white;
-  opacity: 0.8;
-  font-size: 0.8rem;
-  font-weight: bold;
-  text-align: right;
-  padding: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.3;
 }
 
-.nav-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  font-size: 2rem;
-  padding: 0.5rem;
-  cursor: pointer;
-  z-index: 1;
-}
-
-.nav-button.prev {
-  left: 10px;
-}
-
-.nav-button.next {
-  right: 10px;
-}
-
-/* Responsive Adjustments */
-@media (min-width: 768px) {
-  .slide {
-    min-width: 50%;
+@media (max-width: 640px) {
+  .gallery-item {
+    width: 220px;
+    height: 160px;
   }
 }
 </style>

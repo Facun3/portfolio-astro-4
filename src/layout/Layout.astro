@@ -1,13 +1,26 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import Header from '../components/Header.astro';
+import { getBrowserLang, type Lang } from '../i18n';
 import '@fontsource-variable/inter'
 interface Props{
     title: string;
     desc: string;
+    lang?: Lang;
 }
-
 const { desc, title } = Astro.props; 
+
+// Obtener idioma desde URL o usar inglés por defecto
+const urlLang = Astro.url?.searchParams.get('lang');
+let lang: Lang = 'en';
+
+if (urlLang && (urlLang === 'en' || urlLang === 'es')) {
+  lang = urlLang;
+} else {
+  // En el servidor, siempre usar inglés por defecto
+  // El cliente se encargará de cambiar el idioma si es necesario
+  lang = 'en';
+}
 
 const GA_MEASUREMENT_ID = "G-VQFM80T5BV";
 
@@ -27,7 +40,7 @@ const getColor = () => {
 
 <!doctype html>
 
-<html lang="es" class="dark">
+<html lang={lang} class="dark">
 	<head>
     <!-- Google tag (gtag.js) -->
     <script type="text/partytown" async src=`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`></script>
@@ -36,26 +49,20 @@ const getColor = () => {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'MEASUREMENT_ID');
+        gtag('config', 'G-VQFM80T5BV');
     </script>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="description" content={desc}/>
 		<meta name="viewport" content="width=device-width"/>
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-        <ViewTransitions />        
+        <title>{title}</title>
+        <ViewTransitions />
 	</head>
 	<body class="relative">
-            <!-- <div
-            class="absolute inset-0 z-[-2] min-h-screen w-full bg-gray-900
-            bg-[radial-gradient(ellipse_at_center,_#640d14,_rgba(255,255,255,0))]"
-        > -->
-            <div class={`absolute inset-0 z-[-2] min-h-screen w-full bg-white dark:bg-gray-900`}></div>
-        </div>
-        <Header/>
-        <slot/>
-        </div>
+            <div class="absolute inset-0 z-[-2] min-h-full w-full bg-gray-900"></div>
+  <Header lang={lang} />
+  <slot lang={lang}/>
     </body>
 </html>
 
@@ -64,13 +71,14 @@ const getColor = () => {
     html{
         font-family: 'inter variable',system-ui, sans-serif;
         scroll-behavior: smooth;
+        background-color: rgb(17, 24, 39); /* gray-900 */
     }
 
     body {
         display: flex;
         flex-direction: column;
         min-height: 100dvh;
-        overscroll-behavior: none;        
+        overscroll-behavior: none;
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -99,29 +107,4 @@ const getColor = () => {
         }
       }
 
-      @media () {
-        @keyframes blur {
-          from {
-            border: 0px;
-          }
-          to {
-            box-shadow:
-              0px 5px 50px -5px rgba(0, 0, 0, 0.1),
-              0px 0px 0 1px rgba(0, 0, 0, 0.3);
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-            border-width: 1px;
-            border-color: rgba(0, 0, 0);
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 9999px;
-          }
-        }
-      }
 </style>

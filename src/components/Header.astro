@@ -1,49 +1,26 @@
 ---
+import { t, type Lang } from '../i18n';
+import LanguageSelector from './LanguageSelector.astro';
 
-const navItems = [
-  {
-    title: "Experience",
-    label: "exp",
-    url: "/#exp",
-  },
-  {
-    title: "Technologies",
-    label: "techs",
-    url: "/#techs",
-  },
-  {
-    title: "About",
-    label: "about",
-    url: "/#about",
-  },
-]
+interface Props {
+  lang: Lang;
+}
+const { lang = 'en' } = Astro.props;
 
-const mail="facusilberman@gmail.com"
+const mail = "facusilberman@gmail.com"
 ---
 
-<header
-  class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2"
->
-  <nav
-    class="flex items-center justify-center px-3 text-sm font-medium text-gray-600 rounded-full"
-  >
-    {
-      navItems.map((link) => (
-        <a
-          class="relative block px-2 py-2 text-white transition hover:text-yellow-500"
-          aria-label={link.label}
-          href={link.url}
-        >
-          {link.title}
-        </a>
-      ))
-    }
-    <a class="relative block px-2 py-2 text-white transition hover:text-yellow-500" href={`mailto:${mail}`}>
-      <span class="link">Contact</span>
-  </a>
-    <!-- <a class="relative block px-2 py-2 text-white transition hover:text-yellow-500" href={resume} target="_blank" download="Resume.pdf">
-        <span class="link">Contacto</span>
-    </a> -->
+<header class="fixed top-0 z-10 flex items-center justify-center w-full mx-auto mt-2">
+  <nav class="flex items-center justify-between px-3 text-sm font-medium text-gray-600 rounded-full w-full max-w-5xl mx-auto">
+    <div class="flex gap-2 items-center" id="nav-dynamic">
+      <a class="relative block px-2 py-2 text-white transition hover:text-yellow-500" aria-label="exp" href="/#exp" id="nav_exp">{t(lang, 'nav_exp')}</a>
+      <a class="relative block px-2 py-2 text-white transition hover:text-yellow-500" aria-label="techs" href="/#techs" id="nav_techs">{t(lang, 'nav_techs')}</a>
+      <a class="relative block px-2 py-2 text-white transition hover:text-yellow-500" aria-label="about" href="/#about" id="nav_about">{t(lang, 'nav_about')}</a>
+      <a class="relative block px-2 py-2 text-white transition hover:text-yellow-500" href={`mailto:${mail}`} id="nav_contact"><span class="link">{t(lang, 'nav_contact')}</span></a>
+    </div>
+    <div class="ml-auto">
+      <LanguageSelector lang={lang} />
+    </div>
   </nav>
 </header>
 
@@ -55,6 +32,10 @@ const mail="facusilberman@gmail.com"
     const callback = (entries: any[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          const hasNavLink = Array.from(navItems).some(
+            (item) => item.getAttribute("aria-label") === entry.target.id
+          )
+          if (!hasNavLink) return
           navItems.forEach((item) => {
             if (item.getAttribute("aria-label") == entry.target.id) {
               item.classList.add("text-yellow-500")
