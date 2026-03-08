@@ -9,43 +9,61 @@ import BriefcaseIcon from "../layout/icons/BriefcaseIcon.astro";
 import GearIcon from "../layout/icons/GearIcon.astro";
 import LightBulbIcon from "../layout/icons/LightBulbIcon.astro";
 import StarIcon from "../layout/icons/StarIcon.astro";
-import Layout from "../layout/Layout.astro";
 import Typography from "../layout/Typography.astro";
+import Layout from "../layout/Layout.astro";
+import { t, getBrowserLang, type Lang } from '../i18n';
+
+// Obtener idioma desde URL o usar inglés por defecto
+const urlLang = Astro.url?.searchParams.get('lang');
+let lang: Lang = 'en';
+
+if (urlLang && (urlLang === 'en' || urlLang === 'es')) {
+  lang = urlLang;
+} else {
+  // En el servidor, siempre usar inglés por defecto
+  // El cliente se encargará de cambiar el idioma si es necesario
+  lang = 'en';
+}
 ---
-<Layout 
-	title="Facu Choque" 
-	desc="Facu's personal website ">
-	<main class="px-4">
-		<SectionContainer class="pt-40 pb-24">
-			<HeroSection/>
-		</SectionContainer>
-		<SectionContainer id="exp" class="pb-32">
-			<div class="flex flex-row items-center mb-6 gap-2">
-				<BriefcaseIcon class="size-7 text-black dark:text-white"/>
-				<Typography	as="h2" className="ml-2 text-2xl font-bold">Experience</Typography>				
-			</div>
-			<ExperienceTimeLine/>
-		</SectionContainer>
-		<SectionContainer id="what-i-do" class="pb-32">
-			<div class="flex flex-row items-center mb-6 gap-2">
-				<LightBulbIcon class="size-7 text-black dark:text-white"/>
-				<Typography	as="h2" className="ml-2 text-2xl font-bold">What I Do?</Typography>
-			</div>
-			<WhatIDoSection/>
-		</SectionContainer>
-		<SectionContainer id="techs" class="pb-32">
-			<div class="flex flex-row items-center mb-6 gap-2">
-				<GearIcon class="size-7 text-black dark:text-white"/>
-				<Typography	as="h2" className="ml-2 text-2xl font-bold">Technologies</Typography>
-			</div>
-			<TechStackSection lang={lang}/>
-		</SectionContainer>
-		<SectionContainer id="about" class="pb-20">
-			<div class="flex flex-row items-center mb-6 gap-2">
-				<StarIcon class="size-7 text-black dark:text-white"/>
-				<Typography	as="h2" className="ml-2 text-2xl font-bold">About Me</Typography>
-			</div>
-			<AboutMeSection lang={lang}/>
-		</SectionContainer>
-	</main>
+
+<Layout title="Facu Choque" desc="Facu's personal website">
+  <main class="px-4">
+    <SectionContainer class="pt-40 pb-24">
+      <div id="hero-content">
+        <HeroSection lang={lang} />
+      </div>
+    </SectionContainer>
+
+    <SectionContainer id="exp" class="pb-32">
+      <div class="flex flex-row items-center mb-6 gap-2">
+        <BriefcaseIcon class="size-7 text-black dark:text-white" />
+        <Typography as="h2" className="ml-2 text-2xl font-bold" id="section_exp">{t(lang, 'section_exp')}</Typography>
+      </div>
+      <ExperienceTimeLine lang={lang} />
+    </SectionContainer>
+
+    <SectionContainer id="what-i-do" class="pb-32">
+      <div class="flex flex-row items-center mb-6 gap-2">
+        <LightBulbIcon class="size-7 text-black dark:text-white" />
+        <Typography as="h2" className="ml-2 text-2xl font-bold" id="section_whatido">{t(lang, 'section_whatido')}</Typography>
+      </div>
+      <WhatIDoSection lang={lang} />
+    </SectionContainer>
+
+    <SectionContainer id="techs" class="pb-32">
+      <div class="flex flex-row items-center mb-6 gap-2">
+        <GearIcon class="size-7 text-black dark:text-white" />
+        <Typography as="h2" className="ml-2 text-2xl font-bold" id="section_techs">{t(lang, 'section_techs')}</Typography>
+      </div>
+      <TechStackSection lang={lang} />
+    </SectionContainer>
+
+    <SectionContainer id="about" class="pb-20">
+      <div class="flex flex-row items-center mb-6 gap-2">
+        <StarIcon class="size-7 text-black dark:text-white" />
+        <Typography as="h2" className="ml-2 text-2xl font-bold" id="section_about">{t(lang, 'section_about')}</Typography>
+      </div>
+      <AboutMeSection lang={lang} />
+    </SectionContainer>
+  </main>
 </Layout>

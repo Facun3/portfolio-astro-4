@@ -2,45 +2,48 @@
 ---
 
 import ExperienceItem from "./ExperienceItem.astro"
+import { t, type Lang } from '../i18n';
+
+const { lang = 'en' } = Astro.props;
 
 const EXPERIENCE = [
     {
         date: "Feb 2024 – Present",
-        title: "Ssr Full Stack Developer",
-        company: "Prosocial (USA)",
+        title: t(lang, 'ssr_fullstack'),
+        company: t(lang, 'company_prosocial'),
         desc: [
-            "Led the maintenance and updates of multiple applications using Angular, Java, and MongoDB.",
-            "Implemented system integrations with AWS, Auth0, Salesforce, Stripe, and Zoom."
+            t(lang, 'exp_prosocial_1'),
+            t(lang, 'exp_prosocial_2')
         ],
         techStack: ["Angular", "Java", "MongoDB", "AWS", "Auth0", "Salesforce"]
     },
     {
         date: "Oct 2023 – Feb 2024",
-        title: "Software Developer",
-        company: "BeeReal (ARG)",
+        title: t(lang, 'software_developer'),
+        company: t(lang, 'company_beereal'),
         desc: [
-            "Developed a high-performance landing page using Next.js, Tailwind CSS, and Strapi.",
-            "Emphasized accessibility, user experience, and optimization for mobile devices."
+            t(lang, 'exp_beereal_1'),
+            t(lang, 'exp_beereal_2')
         ],
         techStack: ["Next.js", "Tailwind CSS", "Strapi"]
     },
     {
         date: "Aug 2022 – Oct 2023",
-        title: "Full Stack Developer",
-        company: "OSPRERA (ARG)",
+        title: t(lang, 'fullstack_developer'),
+        company: t(lang, 'company_osprera'),
         desc: [
-            "Maintained and updated internal web applications for a health insurance provider using Angular and .NET Core.",
-            "Conducted testing with MS Test, ensuring high-quality releases."
+            t(lang, 'exp_osprera_1'),
+            t(lang, 'exp_osprera_2')
         ],
         techStack: ["Angular", ".NET Core", "SQL Server", "MS Test"]
     },
     {
         date: "Oct 2021 – Aug 2022",
-        title: "Full Stack Developer",
-        company: "Hipódromo de Chile (CHL)",
+        title: t(lang, 'fullstack_developer'),
+        company: t(lang, 'company_hipodromo'),
         desc: [
-            "Collaborated with the IT team to develop various web applications and REST APIs.",
-            "Utilized Angular with Material Design and .NET Core for backend services."
+            t(lang, 'exp_hipodromo_1'),
+            t(lang, 'exp_hipodromo_2')
         ],
         techStack: ["Angular", "Material Design", ".NET Core", "Entity Framework"]
     }
