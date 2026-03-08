@@ -42,6 +42,9 @@ const { images = [] } = Astro.props;
   gap: 1rem;
   width: max-content;
   animation: gallery-scroll 35s linear infinite;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 @keyframes gallery-scroll {
@@ -103,9 +106,15 @@ const { images = [] } = Astro.props;
 }
 
 @media (max-width: 640px) {
+  .gallery-wrapper {
+    padding: 1rem 0;
+  }
   .gallery-item {
-    width: 220px;
-    height: 160px;
+    width: 180px;
+    height: 130px;
+  }
+  .gallery-item:hover {
+    transform: none;
   }
 }
 </style>
