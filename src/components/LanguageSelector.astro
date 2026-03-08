@@ -18,7 +18,7 @@ const esTranslations = getAllTranslations('es');
     aria-label="English"
     type="button"
   >
-    <span class="lang-flag">🇬🇧</span> EN
+    <span class="lang-flag">🇬🇧</span><span class="lang-label"> EN</span>
   </button>
   <span class="lang-divider">|</span>
   <button
@@ -27,7 +27,7 @@ const esTranslations = getAllTranslations('es');
     aria-label="Español"
     type="button"
   >
-    <span class="lang-flag">🇪🇸</span> ES
+    <span class="lang-flag">🇪🇸</span><span class="lang-label"> ES</span>
   </button>
 </div>
 
@@ -235,6 +235,10 @@ const esTranslations = getAllTranslations('es');
     user-select: none;
   }
   @media (max-width: 640px) {
-    .lang-btn { padding: 0.2rem 0.4rem; font-size: 0.8rem; }
+    .lang-label { display: none; }
+    .lang-divider { display: none; }
+    .lang-btn { padding: 0.15rem 0.3rem; }
+    .lang-flag { font-size: 1.3rem; }
+    .lang-btn.selected { background: rgba(234,179,8,0.15); border-radius: 6px; }
   }
 </style>
