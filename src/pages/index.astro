@@ -28,13 +28,13 @@ if (urlLang && (urlLang === 'en' || urlLang === 'es')) {
 
 <Layout title="Facu Choque" desc="Facu's personal website">
   <main class="px-4">
-    <SectionContainer class="pt-40 pb-24">
+    <SectionContainer class="pt-40 pb-16">
       <div id="hero-content">
         <HeroSection lang={lang} />
       </div>
     </SectionContainer>
 
-    <SectionContainer id="exp" class="pb-32">
+    <SectionContainer id="exp" class="py-16">
       <div class="flex flex-row items-center mb-6 gap-2">
         <BriefcaseIcon class="size-7 text-black dark:text-white" />
         <Typography as="h2" className="ml-2 text-2xl font-bold" id="section_exp">{t(lang, 'section_exp')}</Typography>
@@ -42,7 +42,7 @@ if (urlLang && (urlLang === 'en' || urlLang === 'es')) {
       <ExperienceTimeLine lang={lang} />
     </SectionContainer>
 
-    <SectionContainer id="what-i-do" class="pb-32">
+    <SectionContainer id="what-i-do" class="py-16">
       <div class="flex flex-row items-center mb-6 gap-2">
         <LightBulbIcon class="size-7 text-black dark:text-white" />
         <Typography as="h2" className="ml-2 text-2xl font-bold" id="section_whatido">{t(lang, 'section_whatido')}</Typography>
@@ -50,7 +50,7 @@ if (urlLang && (urlLang === 'en' || urlLang === 'es')) {
       <WhatIDoSection lang={lang} />
     </SectionContainer>
 
-    <SectionContainer id="techs" class="pb-32">
+    <SectionContainer id="techs" class="py-16">
       <div class="flex flex-row items-center mb-6 gap-2">
         <GearIcon class="size-7 text-black dark:text-white" />
         <Typography as="h2" className="ml-2 text-2xl font-bold" id="section_techs">{t(lang, 'section_techs')}</Typography>
@@ -58,7 +58,7 @@ if (urlLang && (urlLang === 'en' || urlLang === 'es')) {
       <TechStackSection lang={lang} />
     </SectionContainer>
 
-    <SectionContainer id="about" class="pb-20">
+    <SectionContainer id="about" class="py-16 pb-24">
       <div class="flex flex-row items-center mb-6 gap-2">
         <StarIcon class="size-7 text-black dark:text-white" />
         <Typography as="h2" className="ml-2 text-2xl font-bold" id="section_about">{t(lang, 'section_about')}</Typography>

@@ -32,6 +32,10 @@ const mail = "facusilberman@gmail.com"
     const callback = (entries: any[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          const hasNavLink = Array.from(navItems).some(
+            (item) => item.getAttribute("aria-label") === entry.target.id
+          )
+          if (!hasNavLink) return
           navItems.forEach((item) => {
             if (item.getAttribute("aria-label") == entry.target.id) {
               item.classList.add("text-yellow-500")
