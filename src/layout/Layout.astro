@@ -60,11 +60,7 @@ const getColor = () => {
         <ViewTransitions />
 	</head>
 	<body class="relative">
-            <!-- <div
-            class="absolute inset-0 z-[-2] min-h-screen w-full bg-gray-900
-            bg-[radial-gradient(ellipse_at_center,_#640d14,_rgba(255,255,255,0))]"
-        > -->
-            <div class={`absolute inset-0 z-[-2] min-h-screen w-full bg-white dark:bg-gray-900`}></div>
+            <div class="absolute inset-0 z-[-2] min-h-full w-full bg-gray-900"></div>
   <Header lang={lang} />
   <slot lang={lang}/>
     </body>
@@ -75,6 +71,7 @@ const getColor = () => {
     html{
         font-family: 'inter variable',system-ui, sans-serif;
         scroll-behavior: smooth;
+        background-color: rgb(17, 24, 39); /* gray-900 */
     }
 
     body {
