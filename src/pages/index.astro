@@ -12,7 +12,6 @@ import StarIcon from "../layout/icons/StarIcon.astro";
 import Layout from "../layout/Layout.astro";
 import Typography from "../layout/Typography.astro";
 ---
-
 <Layout 
 	title="Facu Choque" 
 	desc="Facu's personal website ">
@@ -39,14 +38,14 @@ import Typography from "../layout/Typography.astro";
 				<GearIcon class="size-7 text-black dark:text-white"/>
 				<Typography	as="h2" className="ml-2 text-2xl font-bold">Technologies</Typography>
 			</div>
-			<TechStackSection/>
+			<TechStackSection lang={lang}/>
 		</SectionContainer>
 		<SectionContainer id="about" class="pb-20">
 			<div class="flex flex-row items-center mb-6 gap-2">
 				<StarIcon class="size-7 text-black dark:text-white"/>
 				<Typography	as="h2" className="ml-2 text-2xl font-bold">About Me</Typography>
 			</div>
-			<AboutMeSection/>
+			<AboutMeSection lang={lang}/>
 		</SectionContainer>
 	</main>
 </Layout>

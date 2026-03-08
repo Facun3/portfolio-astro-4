@@ -1,4 +1,10 @@
 ---
+import { t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang = 'en' } = Astro.props;
 
 const navItems = [
   {
@@ -19,6 +25,7 @@ const navItems = [
 ]
 
 const mail="facusilberman@gmail.com"
+---
 ---
 
 <header
