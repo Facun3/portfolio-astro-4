@@ -1,5 +1,4 @@
 ---
-
 import Typography from "../layout/Typography.astro";
 import Gallery from "./Gallery/Gallery.astro";
 import { t, type Lang } from '../i18n';
@@ -10,7 +9,6 @@ interface Props {
 
 const { lang = 'en' } = Astro.props;
 
-// Calculate age
 const dateBirth = new Date('1996-09-24');
 const now = new Date();
 let age = now.getFullYear() - dateBirth.getFullYear();
@@ -19,42 +17,32 @@ if (now.getMonth() < dateBirth.getMonth() ||
   age--;
 }
 
-// Get bio with age substituted
 const bio = t(lang, 'aboutme_bio').replace('{edad}', String(age));
 ---
 
-<div class="flex flex-col gap-x-4 md:gap-x-0 md:justify-between">
-  <div class="h-max">
-    <div class="flex flex-col mx-auto mb-8 text-lg opacity-90 border-[1px] border-gray-200 dark:border-gray-700 rounded-lg p-6 bg-white/5 dark:bg-gray-800">
-      <Typography as="p2" class="text-md" id="aboutme-bio" set:html={bio}/>
+<div class="rounded-xl border border-gray-700/60 bg-gray-800/40 overflow-hidden">
+
+  <!-- Bio -->
+  <div class="p-6">
+    <Typography as="p2" class="text-md leading-relaxed" id="aboutme-bio" set:html={bio} />
+  </div>
+
+  <!-- Divider -->
+  <div class="mx-6 border-t border-gray-700/50"></div>
+
+  <!-- Gallery -->
+  <div class="pt-5 pb-2">
+    <div class="px-6 mb-3 flex items-center gap-2 text-sm text-gray-400 italic">
+      <span>🇦🇷</span>
+      <span>Treasures of my country</span>
     </div>
     <Gallery images={[
-      {
-        src: "/lago.webp",
-        alt: "Lago Nahuel Huapi, Rio Negro",
-        caption: "Lago Nahuel Huapi, Rio Negro"
-      },
-      {
-        src: "/cabo.webp",
-        alt: "Cabo San Pablo, Tierra del Fuego",
-        caption: "Cabo San Pablo, Tierra del Fuego"
-      },
-      {
-        src: "/tilcara.webp",
-        alt: "Tilcara, Jujuy",
-        caption: "Tilcara, Jujuy"
-      },
-
-      {
-        src: "/laguna-esmeralda.webp",
-        alt: "Laguna Esmeralda, Ushuaia",
-        caption: "Laguna Esmeralda, Ushuaia",
-      },
-      {
-        src: "/festejo.webp",
-        alt: "Argentina Campeona, Mar del Plata",
-        caption: "Argentina Campeon, Mar del Plata",
-      },
+      { src: "/lago.webp",            alt: "Lago Nahuel Huapi, Rio Negro",      caption: "Lago Nahuel Huapi, Rio Negro" },
+      { src: "/cabo.webp",            alt: "Cabo San Pablo, Tierra del Fuego",  caption: "Cabo San Pablo, Tierra del Fuego" },
+      { src: "/tilcara.webp",         alt: "Tilcara, Jujuy",                    caption: "Tilcara, Jujuy" },
+      { src: "/laguna-esmeralda.webp",alt: "Laguna Esmeralda, Ushuaia",         caption: "Laguna Esmeralda, Ushuaia" },
+      { src: "/festejo.webp",         alt: "Argentina Campeona, Mar del Plata", caption: "Argentina Campeon, Mar del Plata" },
     ]} />
   </div>
+
 </div>
